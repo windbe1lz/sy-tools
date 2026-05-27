@@ -1,0 +1,318 @@
+identity:
+  name: "AuditQA_DeepParser_knowledgebase_retrieve"
+  author: "crc"
+  label:
+    en_US: "AuditQA_DeepParser_knowledgebase_retrieve"
+    zh_Hans: "智能问答-dp知识库检索"
+    pt_BR: "AuditQA_DeepParser_knowledgebase_retrieve"
+    ja_JP: "AuditQA_DeepParser_knowledgebase_retrieve"
+description:
+  human:
+    en_US: "used to auto knowledgebase retrieval"
+    zh_Hans: "选择智能问答智能体中使用到的8个dp知识库"
+    pt_BR: "used to auto knowledgebase retrieval"
+    ja_JP: "used to auto knowledgebase retrieval"
+  llm: "选择智能问答智能体中使用到的8个dp知识库"
+parameters:
+  - name: query
+    type: string
+    required: true
+    label:
+      en_US: Query string
+      zh_Hans: 查询语句
+      pt_BR: Query string
+      ja_JP: クエリ文字列
+    human_description:
+      en_US: "Query string"
+      zh_Hans: "所要查询的问题"
+      pt_BR: "Query string"
+      ja_JP: "Query string"
+    llm_description: "user_query string"
+    form: llm
+
+  - name: email
+    type: string
+    required: true
+    label:
+      en_US: user email
+      zh_Hans: 用户邮箱
+      pt_BR: user email
+      ja_JP: user email
+    human_description:
+      en_US: "user email"
+      zh_Hans: "用户邮箱"
+      pt_BR: "user email"
+      ja_JP: "user email"
+    llm_description: "user email"
+    form: llm
+
+  - name: token
+    type: string
+    required: true
+    label:
+      en_US: user token
+      zh_Hans: 用户token
+      pt_BR: user token
+      ja_JP: user token
+    human_description:
+      en_US: "user token"
+      zh_Hans: "用户token"
+      pt_BR: "user token"
+      ja_JP: "user token"
+    llm_description: "user token"
+    form: llm
+  
+  - name: metadata
+    type: string
+    required: true
+    label:
+      en_US: Metadata filters list
+      zh_Hans: 元数据过滤条件列表
+      pt_BR: Metadata filters list
+      ja_JP: Metadata filters list
+    human_description:
+      en_US: "用元数据过滤标签对知识库进行权限区分"
+      zh_Hans: "用元数据过滤标签对知识库进行权限区分"
+      pt_BR: "用元数据过滤标签对知识库进行权限区分"
+      ja_JP: "用元数据过滤标签对知识库进行权限区分"
+    llm_description: "metadata filters list"
+    form: llm
+
+  # - name: top_k
+  #   type: number
+  #   required: false
+  #   label:
+  #     en_US: top_k value
+  #     zh_Hans: top_k值
+  #     pt_BR: top_k value
+  #     ja_JP: top_k value
+  #   default: 5
+  #   min: 0
+  #   max: 10
+  #   human_description:
+  #     en_US: "top_k value"
+  #     zh_Hans: "top_k值"
+  #     pt_BR: "top_k value"
+  #     ja_JP: "top_k value"
+  #   llm_description: "knowledgebase top-k"
+  #   form: llm
+
+  # - name: score_threshold
+  #   type: number
+  #   required: false
+  #   label:
+  #     en_US: score_threshold value
+  #     zh_Hans: score_threshold值
+  #     pt_BR: score_threshold value
+  #     ja_JP: score_threshold value
+  #   default: 0.3
+  #   min: 0
+  #   max: 1
+  #   human_description:
+  #     en_US: "score_threshold value"
+  #     zh_Hans: "socre_threshold值"
+  #     pt_BR: "score_threshold value"
+  #     ja_JP: "score_threshold value"
+  #   llm_description: "score_threshold"
+  #   form: llm
+  
+  # - name: retrieval_type
+  #   type: select
+  #   required: false
+  #   label:
+  #     en_US: retrieval_type
+  #     zh_Hans: 检索模式
+  #     pt_BR: retrieval_type
+  #     ja_JP: retrieval_type
+  #   default: hybrid
+  #   options:
+  #     - value: hybrid
+  #       label:
+  #         en_US: hybrid
+  #         zh_Hans: 混合检索
+  #     - value: semantic
+  #       label:
+  #         en_US: semantic
+  #         zh_Hans: 语义检索
+  #     - value: keyword
+  #       label:
+  #         en_US: keyword
+  #         zh_Hans: 关键词检索
+  #   human_description:
+  #     en_US: "retrieval_type"
+  #     zh_Hans: "检索模式"
+  #     pt_BR: "retrieval_type"
+  #     ja_JP: "retrieval_type"
+  #   llm_description: "score_threshold"
+  #   form: llm
+
+  # - name: rerank_enabled
+  #   type: boolean
+  #   required: false
+  #   label:
+  #     en_US: rerank_enabled
+  #     zh_Hans: 启用重排序
+  #     pt_BR: rerank_enabled
+  #     ja_JP: rerank_enabled
+  #   default: false
+  #   human_description:
+  #     en_US: "rerank_enabled"
+  #     zh_Hans: "是否启用重排序"
+  #   llm_description: "rerank_enabled"
+  #   form: llm
+
+  # - name: keyword_enabled
+  #   type: boolean
+  #   required: false
+  #   label:
+  #     en_US: keyword_enabled
+  #     zh_Hans: 启用关键词提取
+  #     pt_BR: keyword_enabled
+  #     ja_JP: keyword_enabled
+  #   default: true
+  #   human_description:
+  #     en_US: "keyword_enabled"
+  #     zh_Hans: "是否启用关键词提取"
+  #     pt_BR: "是否启用关键词提取"
+  #     ja_JP: "是否启用关键词提取"
+  #   llm_description: "keyword_enabled"
+  #   form: llm
+
+  - name: gen_laws_kb
+    type: boolean
+    required: false
+    label:
+      en_US: retrieve_gen_laws_kb
+      zh_Hans: 检索《审元-审计相关法律法规库》
+      pt_BR: retrieve_gen_laws_kb
+      ja_JP: retrieve_gen_laws_kb
+    default: false
+    human_description:
+      en_US: "retrieve_gen_laws_kb"
+      zh_Hans: "是否检索《审元-审计相关法律法规库》"
+      pt_BR: "retrieve_gen_laws_kb"
+      ja_JP: "retrieve_gen_laws_kb"
+    llm_description: "retrieve general laws knowledgebase"
+    form: llm
+
+  - name: gen_question_list_kb
+    type: boolean
+    required: false
+    label:
+      en_US: retrieve_gen_question_list_kb
+      zh_Hans: 检索《审元-审计问题清单库》
+      pt_BR: retrieve_gen_question_list_kb
+      ja_JP: retrieve_gen_question_list_kb
+    default: false
+    human_description:
+      en_US: "retrieve_gen_question_list_kb"
+      zh_Hans: "是否检索《审元-审计问题清单库》"
+      pt_BR: "retrieve_gen_question_list_kb"
+      ja_JP: "retrieve_gen_question_list_kb"
+    llm_description: "retrieve general question list knowledgebase"
+    form: llm
+
+  - name: gen_audit_case_kb
+    type: boolean
+    required: false
+    label:
+      en_US: retrieve_gen_audit_case_kb
+      zh_Hans: 检索《审元-审计案例库》
+      pt_BR: retrieve_gen_audit_case_kb
+      ja_JP: retrieve_gen_audit_case_kb
+    default: false
+    human_description:
+      en_US: "retrieve_gen_audit_case_kb"
+      zh_Hans: "是否检索《审元-审计案例库》"
+      pt_BR: "retrieve_gen_audit_case_kb"
+      ja_JP: "retrieve_gen_audit_case_kb"
+    llm_description: "retrieve general audit case knowledgebase"
+    form: llm
+
+  - name: gen_audit_qualitative_kb
+    type: boolean
+    required: false
+    label:
+      en_US: retrieve_gen_audit_qualitative_kb
+      zh_Hans: 检索《通用-审计定性整改库》
+      pt_BR: retrieve_gen_audit_qualitative_kb
+      ja_JP: retrieve_gen_audit_qualitative_kb
+    default: false
+    human_description:
+      en_US: "retrieve_gen_audit_qualitative_kb"
+      zh_Hans: "是否检索《通用-审计定性整改库》"
+      pt_BR: "retrieve_gen_audit_qualitative_kb"
+      ja_JP: "retrieve_gen_audit_qualitative_kb"
+    llm_description: "retrieve general audit qualitative knowledgebase"
+    form: llm
+
+  - name: gen_audit_kb
+    type: boolean
+    required: false
+    label:
+      en_US: retrieve_gen_audit_kb
+      zh_Hans: 检索《通用-审计基础知识库》
+      pt_BR: retrieve_gen_audit_kb
+      ja_JP: retrieve_gen_audit_kb
+    default: false
+    human_description:
+      en_US: "retrieve_gen_audit_kb"
+      zh_Hans: "是否检索《通用-审计基础知识库》"
+      pt_BR: "retrieve_gen_audit_kb"
+      ja_JP: "retrieve_gen_audit_kb"
+    llm_description: "retrieve general audit knowledgebase"
+    form: llm
+
+  # - name: crc_checklist_kb
+  #   type: boolean
+  #   required: false
+  #   label:
+  #     en_US: retrieve_crc_checklist_kb
+  #     zh_Hans: 检索《内部-华润检查要点清单库》
+  #     pt_BR: retrieve_crc_checklist_kb
+  #     ja_JP: retrieve_crc_checklist_kb
+  #   default: false
+  #   human_description:
+  #     en_US: "retrieve_crc_checklist_kb"
+  #     zh_Hans: "是否检索《内部-华润检查要点清单库》"
+  #     pt_BR: "retrieve_crc_checklist_kb"
+  #     ja_JP: "retrieve_crc_checklist_kb"
+  #   llm_description: "retrieve crc checklist knowledgebase"
+  #   form: llm
+  
+  # - name: crc_policy_kb
+  #   type: boolean
+  #   required: false
+  #   label:
+  #     en_US: retrieve_crc_policy_kb
+  #     zh_Hans: 检索《内部-华润制度库》
+  #     pt_BR: retrieve_crc_policy_kb
+  #     ja_JP: retrieve_crc_policy_kb
+  #   default: false
+  #   human_description:
+  #     en_US: "retrieve_crc_policy_kb"
+  #     zh_Hans: "是否检索《内部-华润制度库》"
+  #     pt_BR: "retrieve_crc_policy_kb"
+  #     ja_JP: "retrieve_crc_policy_kb"
+  #   llm_description: "retrieve crc policy knowledgebase"
+  #   form: llm
+  
+  # - name: crc_audit_case_kb
+  #   type: boolean
+  #   required: false
+  #   label:
+  #     en_US: retrieve_crc_audit_case_kb
+  #     zh_Hans: 检索《内部-华润审计问题发现描述库》
+  #     pt_BR: retrieve_crc_audit_case_kb
+  #     ja_JP: retrieve_crc_audit_case_kb
+  #   default: false
+  #   human_description:
+  #     en_US: "retrieve_crc_audit_case_kb"
+  #     zh_Hans: "是否检索《内部-华润审计问题发现描述库》"
+  #     pt_BR: "retrieve_crc_audit_case_kb"
+  #     ja_JP: "retrieve_crc_audit_case_kb"
+  #   llm_description: "retrieve crc audit case knowledgebase"
+  #   form: llm
+extra:
+  python:
+    source: tools/knowledgebase_retrieve.py

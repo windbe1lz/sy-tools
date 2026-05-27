@@ -1,0 +1,361 @@
+identity:
+  name: "knowledgebase_retrieve_choose"
+  author: "shenyuan"
+  label:
+    en_US: "knowledgebase_retrieve_choose"
+    zh_Hans: "智能知识库选择检索_choose"
+    pt_BR: "knowledgebase_retrieve_choose"
+    ja_JP: "knowledgebase_retrieve_choose"
+description:
+  human:
+    en_US: "intelligent knowledge base retrieval"
+    zh_Hans: "智能知识库检索，可实现根据传参选取知识库，并返回结果"
+    pt_BR: "intelligent knowledge base retrieval"
+    ja_JP: "intelligent knowledge base retrieval"
+  llm: "智能知识库检索，可实现根据传参选取知识库，并返回结果"
+
+parameters:
+  - name: query
+    type: string
+    required: true
+    label:
+      en_US: Query string
+      zh_Hans: 查询语句
+      pt_BR: Query string
+      ja_JP: クエリ文字列
+    human_description:
+      en_US: "Query string"
+      zh_Hans: "所要查询的问题"
+      pt_BR: "Query string"
+      ja_JP: "Query string"
+    llm_description: "user_query string"
+    form: llm
+
+  # - name: metadata
+  #   type: string
+  #   required: false
+  #   label:
+  #     en_US: Metadata filters list
+  #     zh_Hans: 元数据过滤条件列表
+  #     pt_BR: Metadata filters list
+  #     ja_JP: Metadata filters list
+  #   human_description:
+  #     en_US: "用元数据过滤标签对知识库进行权限区分"
+  #     zh_Hans: "用元数据过滤标签对知识库进行权限区分"
+  #     pt_BR: "用元数据过滤标签对知识库进行权限区分"
+  #     ja_JP: "用元数据过滤标签对知识库进行权限区分"
+  #   llm_description: "metadata filters list"
+  #   form: llm
+
+  - name: country_laws_kb
+    type: boolean
+    required: false
+    label:
+      en_US: retrieve_country_laws_kb
+      zh_Hans: 检索《审计国家级法律法规库》
+      pt_BR: retrieve_country_laws_kb
+      ja_JP: retrieve_country_laws_kb
+    default: false
+    human_description:
+      en_US: "retrieve_country_laws_kb"
+      zh_Hans: "是否检索《审计国家级法律法规库》"
+      pt_BR: "retrieve_country_laws_kb"
+      ja_JP: "retrieve_country_laws_kb"
+    llm_description: "retrieve country laws knowledgebase"
+    form: llm
+  
+  - name: local_laws_kb
+    type: boolean
+    required: false
+    label:
+      en_US: retrieve_local_laws_kb
+      zh_Hans: 检索《审计地方法律法规库》
+      pt_BR: retrieve_local_laws_kb
+      ja_JP: retrieve_local_laws_kb
+    default: false
+    human_description:
+      en_US: "retrieve_local_laws_kb"
+      zh_Hans: "是否检索《审计相关法律库》"
+      pt_BR: "retrieve_local_laws_kb"
+      ja_JP: "retrieve_local_laws_kb"
+    llm_description: "retrieve local laws knowledgebase"
+    form: llm
+
+  - name: gen_question_list_kb
+    type: boolean
+    required: false
+    label:
+      en_US: retrieve_gen_question_list_kb
+      zh_Hans: 检索《审计问题清单库》
+      pt_BR: retrieve_gen_question_list_kb
+      ja_JP: retrieve_gen_question_list_kb
+    default: false
+    human_description:
+      en_US: "retrieve_gen_question_list_kb"
+      zh_Hans: "是否检索《审计问题清单库》"
+      pt_BR: "retrieve_gen_question_list_kb"
+      ja_JP: "retrieve_gen_question_list_kb"
+    llm_description: "retrieve general question list knowledgebase"
+    form: llm
+
+  - name: gen_audit_case_kb
+    type: boolean
+    required: false
+    label:
+      en_US: retrieve_gen_audit_case_kb
+      zh_Hans: 检索《审计案例库》
+      pt_BR: retrieve_gen_audit_case_kb
+      ja_JP: retrieve_gen_audit_case_kb
+    default: false
+    human_description:
+      en_US: "retrieve_gen_audit_case_kb"
+      zh_Hans: "是否检索《审计案例库》"
+      pt_BR: "retrieve_gen_audit_case_kb"
+      ja_JP: "retrieve_gen_audit_case_kb"
+    llm_description: "retrieve general audit case knowledgebase"
+    form: llm
+
+  - name: gen_audit_qualitative_kb
+    type: boolean
+    required: false
+    label:
+      en_US: retrieve_gen_audit_qualitative_kb
+      zh_Hans: 检索《审计问题定性整改库》
+      pt_BR: retrieve_gen_audit_qualitative_kb
+      ja_JP: retrieve_gen_audit_qualitative_kb
+    default: false
+    human_description:
+      en_US: "retrieve_gen_audit_qualitative_kb"
+      zh_Hans: "是否检索《审计问题定性整改库》"
+      pt_BR: "retrieve_gen_audit_qualitative_kb"
+      ja_JP: "retrieve_gen_audit_qualitative_kb"
+    llm_description: "retrieve general audit qualitative knowledgebase"
+    form: llm
+
+  - name: gen_audit_kb
+    type: boolean
+    required: false
+    label:
+      en_US: retrieve_gen_audit_kb
+      zh_Hans: 检索《审计基础知识库》
+      pt_BR: retrieve_gen_audit_kb
+      ja_JP: retrieve_gen_audit_kb
+    default: false
+    human_description:
+      en_US: "retrieve_gen_audit_kb"
+      zh_Hans: "是否检索《审计基础知识库》"
+      pt_BR: "retrieve_gen_audit_kb"
+      ja_JP: "retrieve_gen_audit_kb"
+    llm_description: "retrieve general audit knowledgebase"
+    form: llm
+
+
+  - name: top_N
+    type: number
+    required: false
+    label:
+      en_US: top_N value
+      zh_Hans: top_N值
+      pt_BR: top_N value
+      ja_JP: top_N value
+    default: 10
+    min: 0
+    max: 30
+    human_description:
+      en_US: "top_N value"
+      zh_Hans: "top_N值"
+      pt_BR: "top_N value"
+      ja_JP: "top_N value"
+    llm_description: "knowledgebase top-N"
+    form: llm
+
+  - name: score_threshold
+    type: number
+    required: false
+    label:
+      en_US: score_threshold value
+      zh_Hans: score_threshold值
+      pt_BR: score_threshold value
+      ja_JP: score_threshold value
+    default: 0.3
+    min: 0
+    max: 1
+    human_description:
+      en_US: "score_threshold value"
+      zh_Hans: "socre_threshold值"
+      pt_BR: "score_threshold value"
+      ja_JP: "score_threshold value"
+    llm_description: "score_threshold"
+    form: llm
+  
+  - name: vector_similarity_weight
+    type: number
+    required: false
+    label:
+      en_US: vector_similarity_weight value
+      zh_Hans: vector_similarity_weight值
+      pt_BR: vector_similarity_weight value
+      ja_JP: vector_similarity_weight value
+    default: 0.5
+    min: 0
+    max: 1
+    human_description:
+      en_US: "vector_similarity_weight value"
+      zh_Hans: "vector_similarity_weight值"
+      pt_BR: "vector_similarity_weight value"
+      ja_JP: "vector_similarity_weight value"
+    llm_description: "vector_similarity_weight"
+    form: llm
+    
+  - name: token
+    type: string
+    required: true
+    label:
+      en_US: user token
+      zh_Hans: 用户token
+      pt_BR: user token
+      ja_JP: user token
+    human_description:
+      en_US: "user token"
+      zh_Hans: "用户token"
+      pt_BR: "user token"
+      ja_JP: "user token"
+    llm_description: "user token"
+    form: llm
+
+  - name: dataset_id
+    type: string
+    required: false
+    label:
+      en_US: dataset_id string
+      zh_Hans: 知识库id
+      pt_BR: dataset_id string
+      ja_JP: ナレッジベースid
+    human_description:
+      en_US: "ID used to select the knowledge base"
+      zh_Hans: "用于选取知识库的ID"
+      pt_BR: "ID used to select the knowledge base"
+      ja_JP: "ナレッジベースを選択するID"
+    llm_description: "ID used to select the knowledge base"
+    form: llm
+
+  - name: user_top_N
+    type: number
+    required: false
+    label:
+      en_US: user_top_N value
+      zh_Hans: user_top_N值
+      pt_BR: user_top_N value
+      ja_JP: user_top_N value
+    default: 10
+    min: 0
+    max: 30
+    human_description:
+      en_US: "user_top_N value"
+      zh_Hans: "user_top_N值"
+      pt_BR: "user_top_N value"
+      ja_JP: "user_top_N value"
+    llm_description: "user knowledgebase top-N"
+    form: llm
+
+  - name: user_score_threshold
+    type: number
+    required: false
+    label:
+      en_US: user_score_threshold value
+      zh_Hans: user_score_threshold值
+      pt_BR: user_score_threshold value
+      ja_JP: user_score_threshold value
+    default: 0.4
+    min: 0
+    max: 1
+    human_description:
+      en_US: "user_score_threshold value"
+      zh_Hans: "user_socre_threshold值"
+      pt_BR: "user_score_threshold value"
+      ja_JP: "user_score_threshold value"
+    llm_description: "user score_threshold"
+    form: llm
+
+  - name: user_vector_similarity_weight
+    type: number
+    required: false
+    label:
+      en_US: user_vector_similarity_weight value
+      zh_Hans: user_vector_similarity_weight值
+      pt_BR: user_vector_similarity_weight value
+      ja_JP: user_vector_similarity_weight value
+    default: 0.5
+    min: 0
+    max: 1
+    human_description:
+      en_US: "user_vector_similarity_weight value"
+      zh_Hans: "user_vector_similarity_weight值"
+      pt_BR: "user_vector_similarity_weight value"
+      ja_JP: "user_vector_similarity_weight value"
+    llm_description: "user_vector_similarity_weight"
+    form: llm
+  # - name: retrieval_type
+  #   type: select
+  #   required: false
+  #   label:
+  #     en_US: retrieval_type
+  #     zh_Hans: 检索模式
+  #     pt_BR: retrieval_type
+  #     ja_JP: retrieval_type
+  #   default: hybrid
+  #   options:
+  #     - value: hybrid
+  #       label:
+  #         en_US: hybrid
+  #         zh_Hans: 混合检索
+  #     - value: semantic
+  #       label:
+  #         en_US: semantic
+  #         zh_Hans: 语义检索
+  #     - value: keyword
+  #       label:
+  #         en_US: keyword
+  #         zh_Hans: 关键词检索
+  #   human_description:
+  #     en_US: "retrieval_type"
+  #     zh_Hans: "检索模式"
+  #     pt_BR: "retrieval_type"
+  #     ja_JP: "retrieval_type"
+  #   llm_description: "score_threshold"
+  #   form: llm
+
+  # - name: rerank_enabled
+  #   type: boolean
+  #   required: false
+  #   label:
+  #     en_US: rerank_enabled
+  #     zh_Hans: 启用重排序
+  #     pt_BR: rerank_enabled
+  #     ja_JP: rerank_enabled
+  #   default: false
+  #   human_description:
+  #     en_US: "rerank_enabled"
+  #     zh_Hans: "是否启用重排序"
+  #   llm_description: "rerank_enabled"
+  #   form: llm
+
+  # - name: keyword_enabled
+  #   type: boolean
+  #   required: false
+  #   label:
+  #     en_US: keyword_enabled
+  #     zh_Hans: 启用关键词提取
+  #     pt_BR: keyword_enabled
+  #     ja_JP: keyword_enabled
+  #   default: true
+  #   human_description:
+  #     en_US: "keyword_enabled"
+  #     zh_Hans: "是否启用关键词提取"
+  #     pt_BR: "是否启用关键词提取"
+  #     ja_JP: "是否启用关键词提取"
+  #   llm_description: "keyword_enabled"
+  #   form: llm
+extra:
+  python:
+    source: tools/knowledgebase_retrieve_choose.py

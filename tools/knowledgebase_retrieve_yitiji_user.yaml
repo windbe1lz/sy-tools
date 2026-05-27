@@ -1,0 +1,84 @@
+identity:
+  name: "knowledgebase_retrieve_yitiji_user"
+  author: "shenyuan"
+  label:
+    en_US: "knowledgebase_retrieve_yitiji_user"
+    zh_Hans: "智能知识库检索_yitiji_user"
+    pt_BR: "knowledgebase_retrieve_yitiji_user"
+    ja_JP: "knowledgebase_retrieve_yitiji_user"
+description:
+  human:
+    en_US: "used to auto knowledgebase retrieval"
+    zh_Hans: "智能知识库检索，可实现根据问题自主选取知识库，并返回结果"
+    pt_BR: "used to auto knowledgebase retrieval"
+    ja_JP: "used to auto knowledgebase retrieval"
+  llm: "智能知识库检索，可实现根据问题自主选取知识库，并返回结果"
+parameters:
+  - name: chat_model
+    type: model-selector
+    scope: llm
+    required: true
+    label:
+      en_US: Model
+      zh_Hans: 模型
+      pt_BR: Model
+      ja_JP: モデル
+    human_description:
+      en_US: Model to use for generating responses.
+      zh_Hans: 用于生成响应的模型。
+      pt_BR: Model to use for generating responses.
+      ja_JP: Model to use for generating responses.
+    llm_description: Model to use for generating responses.
+    form: form
+
+  - name: query
+    type: string
+    required: true
+    label:
+      en_US: Query string
+      zh_Hans: 查询语句
+      pt_BR: Query string
+      ja_JP: クエリ文字列
+    human_description:
+      en_US: "Query string"
+      zh_Hans: "所要查询的问题"
+      pt_BR: "Query string"
+      ja_JP: "Query string"
+    llm_description: "user_query string"
+    form: llm
+
+  # - name: metadata
+  #   type: string
+  #   required: false
+  #   label:
+  #     en_US: Metadata filters list
+  #     zh_Hans: 元数据过滤条件列表
+  #     pt_BR: Metadata filters list
+  #     ja_JP: Metadata filters list
+  #   human_description:
+  #     en_US: "用元数据过滤标签对知识库进行权限区分"
+  #     zh_Hans: "用元数据过滤标签对知识库进行权限区分"
+  #     pt_BR: "用元数据过滤标签对知识库进行权限区分"
+  #     ja_JP: "用元数据过滤标签对知识库进行权限区分"
+  #   llm_description: "metadata filters list"
+  #   form: llm
+
+
+  - name: token
+    type: string
+    required: true
+    label:
+      en_US: user token
+      zh_Hans: 用户token
+      pt_BR: user token
+      ja_JP: user token
+    human_description:
+      en_US: "user token"
+      zh_Hans: "用户token"
+      pt_BR: "user token"
+      ja_JP: "user token"
+    llm_description: "user token"
+    form: llm
+extra:
+  python:
+    source: tools/knowledgebase_retrieve_yitiji_user.py
