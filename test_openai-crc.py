@@ -10,15 +10,15 @@ import concurrent.futures
 
 # 初始化客户端
 client = OpenAI(
-    api_key="sk-8f6a0078594144e2bdd83272bdbc199c",
+    api_key=os.getenv("DASHSCOPE_API_KEY", "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"),
     base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
 )
 
 user_question = """商业银行法第二章第二十三条是什么内容"""
 
-user_email = "pwc@aishenyuan.com"
+user_email = "user@example.com"
 # Bearer token
-user_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjkxYWMyY2MzZmRkZDgwY2EzZjFmNjU1IiwidGVuYW50X2lkIjoiNjhjYzE3NjMxOWUyYWMwMDAxMzM2MWFjIiwiZW1haWwiOiJwd2NAYWlzaGVueXVhbi5jb20iLCJleHAiOjE3NjQ5MjQyMTN9.Ops8ws9tBGA1og3b4jYlGZRL163d1cnDrrLpgy9wnWQ"
+user_token = os.getenv("RAG_USER_TOKEN", "<在此填入你的Bearer Token>")
 # 元数据过滤列表
 user_metadata_filters = [
     {

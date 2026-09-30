@@ -1,6 +1,7 @@
 from collections.abc import Generator
 from typing import Any
 import json
+import os
 import requests
 import concurrent.futures
 from dify_plugin import Tool
@@ -66,7 +67,7 @@ class SyToolsTool(Tool):
         if sy_datasets:
             sy_headers = {
                 "Content-Type": "application/json",
-                "Authorization": f"Bearer ragflow-QyNzZjYjI2MDU1MDExZjA5YjVmZTY2Mm"
+                "Authorization": f"Bearer {os.environ.get('RAGFLOW_API_KEY', 'ragflow-xxxxxxxx')}"
             }
             sy_body = {
                 "question": user_query,

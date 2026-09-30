@@ -25,7 +25,7 @@ class SyToolsTool(Tool):
 
         sy_retrieval_url = "http://192.168.110.35:8760/api/v1/retrieval"
         # Bearer token
-        sy_token = "ragflow-QyNzZjYjI2MDU1MDExZjA5YjVmZTY2Mm"
+        sy_token = os.environ.get("RAGFLOW_API_KEY", "ragflow-xxxxxxxx")
         # 元数据过滤列表
         # user_metadata_filters = tool_parameters.get('metadata')
         # if isinstance(user_metadata_filters, str):
